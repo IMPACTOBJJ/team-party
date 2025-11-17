@@ -1,101 +1,138 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<title>Team Party 2025 参加フォーム</title>
-<style>
-body {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    background: #f5f5f5;
-}
-.container {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 700px;
-    margin: auto;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-input, select {
-    padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 15px;
-    width: 100%;
-    font-size: 16px;
-}
-label {
-    font-weight: bold;
-}
-.person-box {
-    border: 1px solid #ddd;
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 8px;
-    background: #fafafa;
-}
-.total-box {
-    font-size: 20px;
-    font-weight: bold;
-    padding: 15px;
-    background: #fff3cd;
-    border: 1px solid #ffeeba;
-    border-radius: 10px;
-    margin-top: 20px;
-}
-.notice {
-    font-size: 18px;
-    font-weight: bold;
-    color: red;
-    margin: 15px 0;
-}
-button {
-    padding: 15px;
-    background: #0066ff;
-    color: white;
-    font-size: 18px;
-    border: none;
-    border-radius: 8px;
-    width: 100%;
-    cursor: pointer;
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Team Party 2025 参加フォーム</title>
+  <style>
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      background: #fff;
+      padding: 30px;
+      max-width: 900px;
+      margin: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      line-height: 1.6;
+    }
+    h1, h2 {
+      text-align: center;
+      color: #333;
+    }
+    label {
+      font-weight: bold;
+      margin-top: 20px;
+      display: block;
+    }
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin-top: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+    .participant-box {
+      border: 1px solid #ccc;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 15px;
+      background: #fafafa;
+    }
+    button {
+      margin-top: 30px;
+      padding: 15px;
+      background: #1976d2;
+      color: #fff;
+      font-size: 18px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+    }
+    button:hover {
+      background: #145ca1;
+    }
+    .total-box {
+      margin-top: 20px;
+      padding: 15px;
+      background: #e3f2fd;
+      border-left: 5px solid #1976d2;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .note {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #d32f2f;
+      font-weight: bold;
+    }
+    hr {
+      margin: 30px 0;
+    }
+  </style>
 </head>
 <body>
 
 <div class="container">
-<h2>Team Party 2025 参加フォーム</h2>
-<p>
-Hilton Okinawa Chatan Resort / 3rd F<br>
-Buffet restaurant "Suriyun"<br>
-<strong>12月13日（土）18時〜</strong><br>
-A大人 6000円 / B中高生 4800円 / C小学生 2300円
-</p>
 
-<form action="https://formsubmit.co/impacto@bjjokinawa.com" method="POST">
+  <h1>Team Party 2025</h1>
+  <h2>Hilton Okinawa Chatan Resort 3F Suriyun</h2>
+  <p style="text-align:center; font-size:18px;">
+    12月13日（土）18:00〜
+  </p>
 
-<label>参加人数</label>
-<input type="number" id="count" min="1" max="20" required>
+  <hr>
 
-<div id="people"></div>
+  <!-- 日本語・英語説明ブロック -->
+  <div>
+    <h3>【日本語説明】</h3>
+    <p>
+      Team Party 2025 の参加申し込みフォームです。<br>
+      参加人数を入力し、各参加者ごとに A（大人）/ B（中高生）/ C（小学生）を選択し、名前を入力してください。
+    </p>
 
-<div class="total-box">
-合計金額：<span id="total">0</span> 円
-</div>
+    <h3>【English Description】</h3>
+    <p>
+      This is the registration form for Team Party 2025.<br>
+      Enter the number of participants, then select A (Adult), B (Junior/High school), or C (Elementary) and enter each participant’s name.
+    </p>
+  </div>
 
-<label>メールアドレス（Gmail）</label>
-<input type="email" name="email" required>
+  <hr>
 
-<p class="notice">※ お支払いは 12月9日まで にお願いいたします。</p>
+  <!-- 🌟 フォーム 開始 -->
+  <form id="partyForm" action="https://formsubmit.co/impacto@bjjokinawa.com" method="POST">
 
-<!-- メールのタイトル（件名） -->
-<input type="hidden" name="_subject" value="Team Party 2025 参加申し込み">
+    <!-- 必須設定（FormSubmit） -->
+    <input type="hidden" name="_next" value="https://thankyou-page.com">
+    <input type="hidden" name="_captcha" value="false">
 
-<!-- スパム防止 -->
-<input type="hidden" name="_captcha" value="false">
+    <!-- 参加人数入力 -->
+    <label>参加人数 / Number of Participants</label>
+    <input type="number" id="count" min="1" required>
 
-<button type="submit">送信する</button>
-</form>
+    <div id="participants"></div>
+
+    <!-- 合計金額表示 -->
+    <div class="total-box">
+      合計金額 / Total: <span id="total">0</span> 円
+    </div>
+
+    <!-- メールアドレス -->
+    <label>メールアドレス / Email</label>
+    <input type="email" name="Email" required>
+
+    <!-- 支払い期限 -->
+    <p class="note">※ お支払いは <strong>12月9日まで</strong> にお願いします。</p>
+
+    <button type="submit">送信 / Submit</button>
+  </form>
 </div>
 
 <script>
@@ -103,41 +140,45 @@ const priceA = 6000;
 const priceB = 4800;
 const priceC = 2300;
 
-document.getElementById("count").addEventListener("change", function () {
-    const peopleDiv = document.getElementById("people");
-    peopleDiv.innerHTML = "";
-    const count = Number(this.value);
+document.getElementById("count").addEventListener("input", function () {
+  const count = Number(this.value);
+  const container = document.getElementById("participants");
+  container.innerHTML = "";
 
-    for (let i = 1; i <= count; i++) {
-        const box = document.createElement("div");
-        box.className = "person-box";
-        box.innerHTML = `
-            <label>${i}人目 区分</label>
-            <select name="person${i}_type" onchange="calcTotal()">
-                <option value="A">A 大人（6000円）</option>
-                <option value="B">B 中高生（4800円）</option>
-                <option value="C">C 小学生（2300円）</option>
-            </select>
+  for (let i = 1; i <= count; i++) {
+    const div = document.createElement("div");
+    div.className = "participant-box";
 
-            <label>名前</label>
-            <input type="text" name="person${i}_name" required>
-        `;
-        peopleDiv.appendChild(box);
-    }
-    calcTotal();
+    div.innerHTML = `
+      <label>参加者 ${i} / Participant ${i}</label>
+      <label>名前 / Name</label>
+      <input type="text" name="Name_${i}" required>
+
+      <label>区分 / Category</label>
+      <select name="Category_${i}" class="category" required>
+        <option value="">選択 / Select</option>
+        <option value="A 大人 6000円">A（大人）</option>
+        <option value="B 中高生 4800円">B（中高生）</option>
+        <option value="C 小学生 2300円">C（小学生）</option>
+      </select>
+    `;
+
+    container.appendChild(div);
+  }
+
+  updateTotal();
 });
 
-function calcTotal() {
-    let total = 0;
-    const selects = document.querySelectorAll("select");
+document.addEventListener("input", updateTotal);
 
-    selects.forEach(sel => {
-        if (sel.value === "A") total += priceA;
-        if (sel.value === "B") total += priceB;
-        if (sel.value === "C") total += priceC;
-    });
-
-    document.getElementById("total").textContent = total;
+function updateTotal() {
+  let total = 0;
+  document.querySelectorAll(".category").forEach(select => {
+    if (select.value.includes("大人")) total += priceA;
+    if (select.value.includes("中高生")) total += priceB;
+    if (select.value.includes("小学生")) total += priceC;
+  });
+  document.getElementById("total").textContent = total;
 }
 </script>
 
